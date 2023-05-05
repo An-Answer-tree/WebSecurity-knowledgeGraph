@@ -38,13 +38,13 @@ DOWNLOAD_DELAY = 1
 
 # Override the default request headers:
 DEFAULT_REQUEST_HEADERS = {
-    'Cookie': 'Hm_lpvt_75bd0223beb9520a49897a3bfbefa004=1682318754; Hm_lvt_75bd0223beb9520a49897a3bfbefa004=1682318551,1682318588; XSRF-TOKEN=eyJpdiI6ImVTTWNHSURxNnVrXC9FZkU5QTIwZ2VBPT0iLCJ2YWx1ZSI6Im1YZ0F2andydWZ6Q0dMUFUxMVdVamFWK1lUMUFSSnZCOHVlWFFHR2JaWWZTZE0wSnFLcXZabGx0NDFnRnFGT20iLCJtYWMiOiIyZDRhMTFmYjY5MDU1ZGI5MGNkNTUyN2EzNzJkODEyYTlhYjgxZmYwNzQzODRjMzEyYzIzNDViMDU2MDI5OWUzIn0%3D; _session=eyJpdiI6IlF6SGJ5NllTbTZrK0Y4YklJak9oeUE9PSIsInZhbHVlIjoiSjNkV0ZmWVZzS21DeW5EVVR5bW10QnRlOU9kTlpBNlZreEg3cTJucENtNUdOSEZWSCsyT2c3QXZUK3ZTSjNwaCIsIm1hYyI6IjJhNDJlNzdmYjZhNzFjNzZjM2YyZTk4OTJmYTY1MGMyNGRlYTM5M2I0ZDI4N2E4ODViOTEwMzc5YmRkNzM3NGEifQ%3D%3D; wzws_sessionid=gDExMi40LjE3Ny4yMTGBMzBjMDMwgjVlYmNiZKBkRiWi',
+    'Cookie': 'Hm_lpvt_cc53db168808048541c6735ce30421f5=1683286487; Hm_lvt_cc53db168808048541c6735ce30421f5=1683247009,1683284739; hide_fb_detail_tooltips=true',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
     'Accept-Encoding': 'gzip, deflate, br',
-    'Host': 'www.secrss.com',
+    'Host': 'www.freebuf.com',
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.6.1 Safari/605.1.15',
     'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
-    'Referer': 'https://www.secrss.com/articles?tag=%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB',
+    'Referer': 'https://www.freebuf.com/',
     'Connection': 'keep-alive'
 }
 
