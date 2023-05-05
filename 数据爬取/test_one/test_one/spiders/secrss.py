@@ -17,15 +17,16 @@ class SecrssSpider(scrapy.Spider):
         self.driver = webdriver.Chrome()
         self.driver.get(self.start_urls[0])
         i = 2
+        self.links = []
         while True:
             # try:
             xpath = '//li[@title="' + str(i) + '"]/a'
+            
             # 新增 爬取链接
-            self.links = []
             sel = Selector(text=self.driver.page_source)
             # 在页面上查找需要的数据
             self.links.extend(list(sel.xpath('//a[@class="text text-line-2"]/@href').extract()))
-            # time.sleep(0.5)  
+            time.sleep(1.5)  
                 
             # 翻页
             element = self.driver.find_element(By.XPATH, xpath)
@@ -36,8 +37,8 @@ class SecrssSpider(scrapy.Spider):
             #     EC.presence_of_element_located((By.XPATH, '//li[@title="2"]')))
             # more_button.click()
             i += 1
-            time.sleep(0.5)                
-            if i == 3:
+            time.sleep(1.5)                
+            if i == 1001:
                 break
             # except:
             #     break        

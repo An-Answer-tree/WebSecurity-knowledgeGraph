@@ -11,8 +11,5 @@ import numpy as np
 
 class TestTwoPipeline:
     def process_item(self, item, spider):
-        # items = dict(item)
-        # title_list = items["title"]
-        # context_list = items["context"]
-        # np.savetxt("see.txt", title_list, fmt='%s')
+
         return item
