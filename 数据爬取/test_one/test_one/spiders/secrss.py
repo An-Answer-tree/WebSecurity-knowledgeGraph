@@ -37,13 +37,14 @@ class SecrssSpider(scrapy.Spider):
                     break
             except:
                 break        
-            new_links = []
-            for link in self.links:
-                # 如果链接不是以'http'或'https'开头，则添加主网址
-                if not link.startswith('http'):
-                    link = "https://www.freebuf.com" + link
-                new_links.append(link)
+            
         # 将新的链接列表赋值给 self.links
+        new_links = []
+        for link in self.links:
+            # 如果链接不是以'http'或'https'开头，则添加主网址
+            if not link.startswith('http'):
+                link = "https://www.freebuf.com" + link
+            new_links.append(link)
         self.links = new_links
             
     def parse(self, response):
