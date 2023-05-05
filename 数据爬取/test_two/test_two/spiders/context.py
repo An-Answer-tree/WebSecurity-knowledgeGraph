@@ -11,8 +11,11 @@ class ContextSpider(scrapy.Spider):
 
     # 获取包含所有字符串的列表
     string_list = data.tolist()
-    start_urls = string_list[2]
-    print(start_urls)
+    # print('-----------------------------------------------------------------------')
+    # print(type(string_list[0]))
+    start_urls = string_list
+    # start_urls = ['https://www.freebuf.com/articles/network/364616.html']
+    
     def parse(self, response):
         item = TestTwoItem()
         # 存储标题
@@ -20,7 +23,7 @@ class ContextSpider(scrapy.Spider):
         
         # 存储内容
         res_list = list(response.xpath('//div[@class="content-detail"]//text()').extract())
-        new_str = str()
+        new_str = ''
         for i in res_list:
             new_str += i
         item["context"] = new_str
