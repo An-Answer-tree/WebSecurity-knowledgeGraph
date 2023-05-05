@@ -12,7 +12,7 @@ import numpy as np
 class TestOnePipeline:
     def process_item(self, item, spider):
         result = np.array(dict(item)['url'])
-        print(type(result))
+        # print(type(result))
         np.savetxt("../result.csv", result, delimiter=',', fmt='%s')
         
         return item
