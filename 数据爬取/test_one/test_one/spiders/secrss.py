@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from scrapy.selector import Selector
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from ..items import TestOneItem
+from selenium.webdriver import Chrome
 
 
 class SecrssSpider(scrapy.Spider):
@@ -18,25 +18,29 @@ class SecrssSpider(scrapy.Spider):
         self.driver.get(self.start_urls[0])
         i = 2
         while True:
-            try:
-                xpath = '//li[@title="' + str(i) + '"]/a'
-                # 新增 爬取链接
-                self.links = []
-                sel = Selector(text=self.driver.page_source)
-                # 在页面上查找需要的数据
-                self.links.extend(sel.xpath('//a[@class="text text-line-2"]/@href').extract())
-                time.sleep(1)  
+            # try:
+            xpath = '//li[@title="' + str(i) + '"]/a'
+            # 新增 爬取链接
+            self.links = []
+            sel = Selector(text=self.driver.page_source)
+            # 在页面上查找需要的数据
+            self.links.extend(list(sel.xpath('//a[@class="text text-line-2"]/@href').extract()))
+            # time.sleep(0.5)  
                 
-                # 翻页
-                more_button = WebDriverWait(self.driver, 10).until(
-                    EC.presence_of_element_located((By.XPATH, xpath)))
-                more_button.click()
-                i += 1
-                time.sleep(2)                
-                if i == 1001:
-                    break
-            except:
-                break        
+            # 翻页
+            element = self.driver.find_element(By.XPATH, xpath)
+            self.driver.execute_script("arguments[0].click();", element)
+
+            
+            # more_button = WebDriverWait(self.driver, 10).until(
+            #     EC.presence_of_element_located((By.XPATH, '//li[@title="2"]')))
+            # more_button.click()
+            i += 1
+            time.sleep(0.5)                
+            if i == 3:
+                break
+            # except:
+            #     break        
             
         # 将新的链接列表赋值给 self.links
         new_links = []
