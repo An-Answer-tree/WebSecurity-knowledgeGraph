@@ -11,7 +11,8 @@ class ContextSpider(scrapy.Spider):
 
     # 获取包含所有字符串的列表
     string_list = data.tolist()
-    start_urls = string_list
+    start_urls = string_list[2]
+    print(start_urls)
     def parse(self, response):
         item = TestTwoItem()
         # 存储标题
