@@ -18,9 +18,9 @@ class ContextSpider(scrapy.Spider):
         # 存储标题
         item["title"] = response.xpath('//h1//text()').extract()
         
-        # 存储内容
-        list = response.xpath("//div[@class='article-body']/p//text()").extract()
-        item["context"] = list
+        # # 存储内容
+        # list = response.xpath("//div[@class='article-body']/p//text()").extract()
+        # item["context"] = list
         
         
         # 存储内容
