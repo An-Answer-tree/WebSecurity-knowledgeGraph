@@ -22,5 +22,13 @@ class ContextSpider(scrapy.Spider):
         list = response.xpath("//div[@class='article-body']/p//text()").extract()
         item["context"] = list
         
+        
+        # 存储内容
+        res_list = list(response.xpath('//div[@class="article-body"]/p//text()').extract())
+        new_str = ''
+        for i in res_list:
+            new_str += i
+        item["context"] = new_str
+        
         yield item
     
