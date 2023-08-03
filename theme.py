@@ -1,6 +1,8 @@
 from gensim import corpora
 from gensim.models import LdaModel
 from gensim.corpora import Dictionary
+import pyLDAvis.gensim
+from gensim.models import CoherenceModel
 
 fp = open('data_without_POS.txt','r',encoding='utf8')
 data_2D_list = eval(fp.read())
@@ -31,3 +33,21 @@ for i in train:
     print(n, ': ', doc_lda, file=f2)
     n += 1
 f2.close()
+
+# -------------------------图形可视化----------------------------
+d=pyLDAvis.gensim.prepare(lda, corpus, dictionary)
+pyLDAvis.save_html(d, 'lda_pass10.html')	# 将结果保存为该html文件
+pyLDAvis.show(d)
+
+
+# -------------------------输出评价指数----------------------------
+f3 = open('judge.txt', 'wt')
+# 计算困惑度 (分数越低越好)
+print('困惑度（分数越低越好）: ', round(lda.log_perplexity(corpus), 2), file=f3)
+
+# 计算连贯性 (分数越高越好)
+coherence_model_lda = CoherenceModel(model=lda, texts=train, dictionary=dictionary, coherence='c_v')
+coherence_lda = coherence_model_lda.get_coherence()
+print('连贯性（分数越高越好）: ', round(coherence_lda, 2), file=f3)
+
+f3.close()
