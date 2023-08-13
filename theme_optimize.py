@@ -38,9 +38,12 @@ if __name__ == '__main__':
     data_2D_list = eval(fp.read())
 
     # -------------------------将待训练数据表示为词袋向量----------------------------
+    
     # train = data_2D_list
     train = []
     train.extend(data_2D_list[0:101])
+    
+    
     dictionary = corpora.Dictionary(train)
     dictionary.filter_extremes(no_below=15, no_above=0.4, keep_n=80000)
     corpus = [dictionary.doc2bow(text) for text in train]
