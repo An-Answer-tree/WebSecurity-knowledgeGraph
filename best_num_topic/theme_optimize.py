@@ -39,9 +39,9 @@ if __name__ == '__main__':
 
     # -------------------------将待训练数据表示为词袋向量----------------------------
     
-    # train = data_2D_list
-    train = []
-    train.extend(data_2D_list[0:101])
+    train = data_2D_list
+    # train = []
+    # train.extend(data_2D_list[0:101])
     
     
     dictionary = corpora.Dictionary(train)
@@ -51,9 +51,9 @@ if __name__ == '__main__':
 
 
     # Can take a long time to run.
-    model_list, coherence_values = compute_coherence_values(dictionary=dictionary, corpus=corpus, texts=train, start=2, limit=40, step=4)
+    model_list, coherence_values = compute_coherence_values(dictionary=dictionary, corpus=corpus, texts=train, start=2, limit=40, step=2)
     # Show graph
-    limit=40; start=2; step=4
+    limit=40; start=2; step=2
     x = range(start, limit, step)
     plt.plot(x, coherence_values)
     plt.xlabel("Num Topics")
