@@ -122,4 +122,4 @@ df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contri
 
 # Show
 df_dominant_topic.head(10)
-df_dominant_topic.to_csv('filename.csv', index=True)
+df_dominant_topic.to_csv('filename.csv', index=False)
