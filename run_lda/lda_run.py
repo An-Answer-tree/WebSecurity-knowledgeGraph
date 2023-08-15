@@ -1,5 +1,4 @@
-import re
-import numpy as np
+# -------------------------------------------------导入库-----------------------------------------------------
 import pandas as pd
 from pprint import pprint
 
@@ -9,12 +8,7 @@ import gensim.corpora as corpora
 from gensim.utils import simple_preprocess
 from gensim.models import CoherenceModel
 
-# spacy for lemmatization
-import spacy
-
 # Plotting tools
-# import pyLDAvis
-# import pyLDAvis.gensim  # don't skip this
 import matplotlib.pyplot as plt
 
 # Enable logging for gensim - optional
@@ -25,46 +19,62 @@ import warnings
 warnings.filterwarnings("ignore",category=DeprecationWarning)
 mallet_path = 'mallet-2.0.8/bin/mallet'
 
-# def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
-#     """
-#     Compute c_v coherence for various number of topics
-
-#     Parameters:
-#     ----------
-#     dictionary : Gensim dictionary
-#     corpus : Gensim corpus
-#     texts : List of input texts
-#     limit : Max num of topics
-
-#     Returns:
-#     -------
-#     model_list : List of LDA topic models
-#     coherence_values : Coherence values corresponding to the LDA model with respective number of topics
-#     """
-#     coherence_values = []
-#     model_list = []
-#     for num_topics in range(start, limit, step):
-#         model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=id2word)
-#         model_list.append(model)
-#         coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
-#         coherence_values.append(coherencemodel.get_coherence())
-
-#     return model_list, coherence_values
 
 
-# -------------------------数据导入----------------------------
+
+# -------------------------------------------计算一致度函数定义--------------------------------------------------
+def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
+    """
+    Compute c_v coherence for various number of topics
+
+    Parameters:
+    ----------
+    dictionary : Gensim dictionary
+    corpus : Gensim corpus
+    texts : List of input texts
+    limit : Max num of topics
+
+    Returns:
+    -------
+    model_list : List of LDA topic models
+    coherence_values : Coherence values corresponding to the LDA model with respective number of topics
+    """
+    coherence_values = []
+    model_list = []
+    for num_topics in range(start, limit, step):
+        model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=num_topics, id2word=id2word)
+        model_list.append(model)
+        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
+        coherence_values.append(coherencemodel.get_coherence())
+
+    return model_list, coherence_values
+
+
+
+
+
+
+# ----------------------------------------------------函数导入--------------------------------------------------
 fp = open('./data_without_POS.txt','r',encoding='utf8')
 data_2D_list = eval(fp.read())
 train = data_2D_list
 # train = []
 # train.extend(data_2D_list[0:101])
 
-# -------------------------将待训练数据表示为词袋向量----------------------------
+
+
+
+
+# ----------------------------------------------将待训练数据表示为词袋向量-----------------------------------------
 id2word = corpora.Dictionary(train)
 id2word.filter_extremes(no_below=15, no_above=0.4, keep_n=80000)
 corpus = [id2word.doc2bow(text) for text in train]
 
-# # -------------------------获取最优主题数----------------------------
+
+
+
+
+# # -----------------------------获取最优主题数（先注释掉此部分之后的所有内容，运行后获取最优主题）--------------------------
 # # Can take a long time to run.
 # model_list, coherence_values = compute_coherence_values(dictionary=id2word, corpus=corpus, texts=train, start=2, limit=40, step=6)
 # # Show graph
@@ -81,9 +91,13 @@ corpus = [id2word.doc2bow(text) for text in train]
 #     print("Num Topics =", m, " has Coherence Value of", round(cv, 4))
 
 
-# Select the model and print the topics
+
+
+
+# ---------------------------------------输出训练的n个主题（根据最优主题数更改num_topics）------------------------------
 optimal_model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=36, id2word=id2word)
 model_topics = optimal_model.show_topics(formatted=False)
+
 # 打开文件以供写入
 with open('output.txt', 'w') as file:
     # 将输出重定向到文件
@@ -91,6 +105,9 @@ with open('output.txt', 'w') as file:
 
 
 
+
+
+# -------------------------------------------------对目标语句进行主题分类-------------------------------------------------
 def format_topics_sentences(ldamodel=optimal_model, corpus=corpus, texts=train):
     # Init output
     sent_topics_df = pd.DataFrame()
@@ -112,7 +129,6 @@ def format_topics_sentences(ldamodel=optimal_model, corpus=corpus, texts=train):
     contents = pd.Series(texts)
     sent_topics_df = pd.concat([sent_topics_df, contents], axis=1)
     return(sent_topics_df)
-
 
 df_topic_sents_keywords = format_topics_sentences(ldamodel=optimal_model, corpus=corpus, texts=train)
 
