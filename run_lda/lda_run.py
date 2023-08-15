@@ -99,7 +99,7 @@ optimal_model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num
 model_topics = optimal_model.show_topics(formatted=False)
 
 # 打开文件以供写入
-with open('output.txt', 'w') as file:
+with open('classes.txt', 'w') as file:
     # 将输出重定向到文件
     pprint(optimal_model.print_topics(num_topics=36, num_words=10), stream=file)
 
@@ -138,4 +138,4 @@ df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contri
 
 # Show
 df_dominant_topic.head(10)
-df_dominant_topic.to_csv('filename.csv', index=False)
+df_dominant_topic.to_csv('classify_result.csv', index=False)
