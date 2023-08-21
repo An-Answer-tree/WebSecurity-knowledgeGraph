@@ -76,9 +76,9 @@ corpus = [id2word.doc2bow(text) for text in train]
 
 # # -----------------------------获取最优主题数（先注释掉此部分之后的所有内容，运行后获取最优主题）--------------------------
 # # Can take a long time to run.
-# model_list, coherence_values = compute_coherence_values(dictionary=id2word, corpus=corpus, texts=train, start=2, limit=40, step=6)
+# limit=40; start=2; step=2;
+# model_list, coherence_values = compute_coherence_values(dictionary=id2word, corpus=corpus, texts=train, start=start, limit=limit, step=step)
 # # Show graph
-# limit=40; start=2; step=6;
 # x = range(start, limit, step)
 # plt.plot(x, coherence_values)
 # plt.xlabel("Num Topics")
@@ -101,7 +101,7 @@ model_topics = optimal_model.show_topics(formatted=False)
 # 打开文件以供写入
 with open('classes.txt', 'w') as file:
     # 将输出重定向到文件
-    pprint(optimal_model.print_topics(num_topics=36, num_words=10), stream=file)
+    pprint(optimal_model.print_topics(num_topics=50, num_words=30), stream=file)
 
 
 
@@ -137,5 +137,5 @@ df_dominant_topic = df_topic_sents_keywords.reset_index()
 df_dominant_topic.columns = ['Document_No', 'Dominant_Topic', 'Topic_Perc_Contrib', 'Keywords', 'Text']
 
 # Show
-df_dominant_topic.head(10)
+# df_dominant_topic.head(10)
 df_dominant_topic.to_csv('classify_result.csv', index=False)
