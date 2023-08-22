@@ -4,7 +4,7 @@
 
 <p align="center"><font face="黑体" size=2.>表1 基本语义角色类型</font></p>
 
-<div class="center">
+<p align="center">
 
 |   关系类型   |    Tag   |     Description    |
 |  :----:  |  :----:  |  :---------------:  |
