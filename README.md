@@ -6,13 +6,13 @@
 
 <p align="center">
 
-<p align="center">|   关系类型   |    Tag   |     Description    |
-<p align="center">|  :----:  |  :----:  |  :---------------:  |
-<p align="center">|   ARG0    |    causers or experiencers   |  施事者、主体、触发者 |
-<p align="center">|   ARG1   |    patient    |     受事者I       |
-<p align="center">|   ARG2   |    range    |        语义角色2       |
-<p align="center">|   ARG3   |starting point|       语义角色3 |
-<p align="center">|  ARG4   |    end point  |语义角色4|
+      |   关系类型   |    Tag   |     Description    |
+      |  :----:  |  :----:  |  :---------------:  |
+      |   ARG0    |    causers or experiencers   |  施事者、主体、触发者 |
+      |   ARG1   |    patient    |     受事者I       |
+      |   ARG2   |    range    |        语义角色2       |
+      |   ARG3   |starting point|       语义角色3 |
+      |  ARG4   |    end point  |语义角色4|
 
 表格摘自：<http://ltp.ai/docs/appendix.html#id4>
 </div>
