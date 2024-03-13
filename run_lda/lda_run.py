@@ -17,7 +17,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 
 import warnings
 warnings.filterwarnings("ignore",category=DeprecationWarning)
-mallet_path = 'mallet-2.0.8/bin/mallet'
+mallet_path = 'run_lda/mallet-2.0.8/bin/mallet'
 
 
 
@@ -55,7 +55,7 @@ def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
 
 
 # ----------------------------------------------------函数导入--------------------------------------------------
-fp = open('./data_without_POS.txt','r',encoding='utf8')
+fp = open('./run_lda/data_without_POS_new.txt','r',encoding='utf8')
 data_2D_list = eval(fp.read())
 train = data_2D_list
 # train = []
@@ -95,13 +95,13 @@ corpus = [id2word.doc2bow(text) for text in train]
 
 
 # ---------------------------------------输出训练的n个主题（根据最优主题数更改num_topics）------------------------------
-optimal_model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=36, id2word=id2word)
+optimal_model = gensim.models.wrappers.LdaMallet(mallet_path, corpus=corpus, num_topics=4, id2word=id2word)
 model_topics = optimal_model.show_topics(formatted=False)
 
 # 打开文件以供写入
 with open('classes.txt', 'w') as file:
     # 将输出重定向到文件
-    pprint(optimal_model.print_topics(num_topics=36, num_words=10), stream=file)
+    pprint(optimal_model.print_topics(num_topics=4, num_words=10), stream=file)
 
 
 
