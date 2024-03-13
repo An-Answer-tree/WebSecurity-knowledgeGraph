@@ -4,17 +4,18 @@ import jieba.posseg as pseg
 import re
 
 data = []
-with open('data.txt', 'rt') as f:
+with open('data_after_ner_ssid.json', 'rb') as f:
     data = json.loads(f.read())
+print(type(data))
 
-f1 = open('data_without_POS.txt', 'wt')
-f2 = open('data_with_POS.txt', 'wt')
+f1 = open('data_without_POS_new.txt', 'w', encoding='utf-8')
+f2 = open('data_with_POS_new.txt', 'w', encoding='utf-8')
 
 for i in data:
     # 提取出标题
     title = i['title'][0]
     # 提取出内容
-    context = i['context']
+    context = i['content']
     # 标题和内容加在一起
     text = title + context
     
