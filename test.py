@@ -3,23 +3,28 @@ from scipy.spatial.distance import cosine
 import numpy as np
 import json
 import time
+
 # load model
 model = SentenceTransformer('sbert-base-chinese-nli')
+# use cuda
+device = 'cuda'
+model.to(device)
 
 # load data
 data = []
-with open('data_after_ner_ssid.json', mode='rt') as file:
+with open('data_after_ner_ssid.json', mode='rt', encoding='utf-8') as file:
     data = json.load(file)
 
 contents = []
-for i in range(0, 11):
+for i in range(0, 2818):
     contents.append(data[i]['content'])
 
 start = time.time()
-with open('similarity_scores.txt', 'a') as file:
-    for i in range(0, 11):
+with open('similarity_scores.txt', 'w') as file:
+    for i in range(0, 2818):
+        print("running i = ", i)
         reference_sentence = contents[i]
-        sentences = contents[i:11]
+        sentences = contents[i:2818]
 
         # 将参考文本和待比较文本列表转换为嵌入向量
         reference_embedding = model.encode(reference_sentence)
