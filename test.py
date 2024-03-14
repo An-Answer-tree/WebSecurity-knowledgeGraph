@@ -16,7 +16,7 @@ for i in range(0, 11):
     contents.append(data[i]['content'])
 
 start = time.time()
-with open('similarity_scores.txt', 'w') as file:
+with open('similarity_scores.txt', 'a') as file:
     for i in range(0, 11):
         reference_sentence = contents[i]
         sentences = contents[i:11]
@@ -33,12 +33,6 @@ with open('similarity_scores.txt', 'w') as file:
             cosine_scores.append(score)
         print()
         file.write(repr(cosine_scores) + ',\n')
-        file.write(',')
-        file.write('\n')
+        file.flush()
 end = time.time()
 print('total time = ', end-start)
-    
-
-# 打印相似度得分
-# for i, score in enumerate(cosine_scores):
-#     print(f"Similarity score between reference sentence and sentence {i + 1}: {score}")
