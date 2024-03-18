@@ -7,4 +7,4 @@ result_matrix = np.zeros((2818, 2818))
 for i in range(2818):
     result_matrix[i][i:2818] = data[i]
 
-np.savetxt('similarity_matrix_result.csv', result_matrix, fmt='%f')
+np.savetxt('similarity_matrix_result.csv', result_matrix, fmt='%f', delimiter=',')
