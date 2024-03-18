@@ -1,7 +1,5 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from scipy.interpolate import interp1d
-from findiff import FinDiff
 
 threshold_list = [i for i in np.arange(0, 1, 0.05)]
 
@@ -22,15 +20,20 @@ for i in threshold_list:
 
 plt.figure()
 plt.plot(threshold_list, result_list, color='blue', label='Discrete Points')
+plt.xlabel('threshold')
+plt.ylabel('Data proportion')
 
-interp_func = interp1d(threshold_list, result_list, bounds_error=False)
+# calculate second derivative
+dy_dx = np.gradient(result_list, threshold_list)
+d2y_d2x = np.gradient(dy_dx, threshold_list)
 
-# 使用 findiff 计算二阶导数
-fd = FinDiff(0.05, 2, 2)  # 步长为0.05，计算二阶导数
-second_derivatives = fd(interp_func(threshold_list))
+plt.figure()
+plt.plot(threshold_list, dy_dx)
+plt.xlabel('threshold')
+plt.ylabel('first derivative')
 
-print(second_derivatives)
-
-# plt.figure()
-# plt.scatter(threshold_list, second_derivatives)
-# plt.show()
+plt.figure()
+plt.plot(threshold_list, d2y_d2x)
+plt.xlabel('threshold')
+plt.ylabel('second derivative')
+plt.show()
