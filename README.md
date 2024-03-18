@@ -1,3 +1,2 @@
 # webSecurity-knowledgeNetwork
-scientific research training
-each branch has its function
+similarity calculate to work out a matrix
