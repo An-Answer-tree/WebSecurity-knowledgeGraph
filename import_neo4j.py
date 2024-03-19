@@ -5,13 +5,19 @@ from function import *
 uri = "neo4j://127.0.0.1:7687"
 driver = GraphDatabase.driver(uri, auth=("neo4j", "12345678"))
 
-# import event name(aka title)
+# import event name(aka title) to varible title_list
 title_list = []
-json_list = json.load('./data_after_ner_ssid.json')
-print(json_list[0])
+with open('data_after_ner_ssid.json', 'rb') as f:
+    json_list = json.loads(f.read())
+for i in range(0, 2818):
+    title_list.append(json_list[i]['title'][0])
+
+# import relationship matrix
+
 
 # 在Neo4j数据库中创建节点
-# with driver.session() as session:
-#     session.write_transaction(create_event_nodes, title_list)
+with driver.session() as session:
+    session.write_transaction(clear_all_nodes)
+    session.write_transaction(create_event_nodes, title_list)
 
 driver.close()  # close the driver object
