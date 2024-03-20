@@ -10,7 +10,7 @@ def connect_related_nodes(tx, matrix_size, matrix):
         for j in range(i + 1, matrix_size):  # 只处理上三角部分
             if matrix[i][j] == 1:  # 如果节点i和节点j相关
                 tx.run(
-                     """
+                    """
                     MATCH (a:Event {ssid: $ssid_a}), (b:Event {ssid: $ssid_b})
                     MERGE (a)-[r:RELATED]-(b)
                     SET r.label = 'RELATED'
