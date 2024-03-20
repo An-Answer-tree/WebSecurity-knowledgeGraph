@@ -1,4 +1,4 @@
-攻击者,受害者,目的,损害程度,工具,时间,地点,受害者数量,泄露的数据,数据数量,title,Topic
+attacker,victim,purpose,extent_of_damage,tools,time,place,number_of_victims,compromised_data,number_of_data,title,topic
 "['Chris Valasek', 'Charlie Miller']",Jeep,控制车辆,,CAN总线网络系统,2015年7月,,,,,汽车网络安全攻击实例解析,1.0
 ,"['孟加拉国家航空公司', '微星国际']",窃取数据并索要巨额赎金,,MoneyMessage,近期,,,,,定向攻击微星！新勒索“Money Message”索要巨额赎金！,2.0
 攻击者,用户,,,RedLine窃密木马,2022年2月初,全球各地,,登录凭证及其他重要商业数据,,2022年度窃密木马攻击态势报告,2.0
