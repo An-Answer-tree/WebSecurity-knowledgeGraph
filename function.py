@@ -32,7 +32,7 @@ def connect_related_nodes(tx, matrix_size, matrix):
                 tx.run(
                     """
                     MATCH (a:Event {sid: $sid_a}), (b:Event {sid: $sid_b})
-                    MERGE (a)-[r:RELATED]-(b)
+                    MERGE (a)<-[r:RELATED]->(b)
                     SET r.label = 'RELATED'
                     """,
                     sid_a=i,
