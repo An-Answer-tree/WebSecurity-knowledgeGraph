@@ -2,7 +2,7 @@ import numpy as np
 
 similarity_matrix = np.loadtxt('./result/similarity_matrix_result.csv', delimiter=',')
 
-threshold = 0.87
+threshold = 0.82
 
 count = 0
 for i in range(2818):
@@ -13,7 +13,7 @@ for i in range(2818):
         else:
             similarity_matrix[i][j] = 0
 print(count)
-np.savetxt('./threshold_decision/0.87_0_1_matrix.csv', similarity_matrix, fmt='%d', delimiter=',')
+np.savetxt('./threshold_decision/0.82_0_1_matrix.csv', similarity_matrix, fmt='%d', delimiter=',')
 
 
 
