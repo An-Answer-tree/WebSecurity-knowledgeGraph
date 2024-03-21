@@ -24,7 +24,7 @@ with open('./result_of_ner.csv', newline='', encoding='utf-8') as csvfile:
     features = list(reader)
 
 # import relationship matrix
-relationship_matrix = np.loadtxt('./0.9_0_1_matrix.csv', delimiter=',')
+relationship_matrix = np.loadtxt('./0.82_0_1_matrix.csv', delimiter=',')
 matrix_size = 2818
 
 # 在Neo4j数据库中创建节点
